@@ -22,6 +22,10 @@
       <strong>Site:</strong>
       <%= @bookmark.site.url %>
     </p>
+    <p>
+      <strong>Tags:</strong>
+      <%= render partial: 'tags', locals: { tags: @bookmark.tags } %>
+    </p>
   </div>
 </div>
 

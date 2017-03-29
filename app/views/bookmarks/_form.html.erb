@@ -28,6 +28,12 @@
         <%= f.text_field :short_url, placeholder: true %>
       </div>
 
+      <%# Using SimpleForm would make this much easier as we could use a custom input. %>
+      <div class="field">
+        <%= f.label :tags %>
+        <%= f.text_field :tags, placeholder: true, value: textify_tags(f.object.tags) %>
+      </div>
+
       <div class="actions">
         <%= f.submit %>
       </div>

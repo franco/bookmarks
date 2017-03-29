@@ -9,8 +9,9 @@ class Bookmark < ApplicationRecord
   def self.search term
     where "lower(name) LIKE lower(:term) OR \
            lower(url) LIKE lower(:term) OR \
-           lower(short_url) LIKE lower(:term)",
-           term: "%#{term}%"
+           lower(short_url) LIKE lower(:term) OR \
+           lower(:tag) = ANY (tags)",
+           term: "%#{term}%", tag: term
   end
 
   private

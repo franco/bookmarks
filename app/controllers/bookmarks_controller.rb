@@ -70,7 +70,12 @@ class BookmarksController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # Additionally convert comma separated tags into an array.
     def bookmark_params
-      params.require(:bookmark).permit(:name, :url, :short_url, :site_id)
+      bmark_params = params.require(:bookmark).permit(:name, :url, :short_url, :tags)
+      if bmark_params.has_key? :tags
+        bmark_params[:tags] = bmark_params[:tags].split(',').map(&:strip)
+      end
+      bmark_params
     end
 end
