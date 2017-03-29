@@ -1,0 +1,29 @@
+<%= render partial: 'layouts/notice'%>
+
+<div class="row">
+  <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+ 
+    <p>
+      <strong>Name:</strong>
+      <%= @bookmark.name %>
+    </p>
+
+    <p>
+      <strong>Url:</strong>
+      <%= @bookmark.url %>
+    </p>
+
+    <p>
+      <strong>Short url:</strong>
+      <%= @bookmark.short_url %>
+    </p>
+
+    <p>
+      <strong>Site:</strong>
+      <%= @bookmark.site.url %>
+    </p>
+  </div>
+</div>
+
+<%= link_to t('edit_action'), edit_bookmark_path(@bookmark) %> |
+<%= link_to t('back_action'), bookmarks_path %>

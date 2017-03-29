@@ -20,4 +20,25 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      bookmark:
+        url: "URL"
+        short_url: "Short URL"
+  helpers:
+    placeholder:
+      bookmark:
+        name: 'Bookmark name'
+        url: 'http://www.example.com/…'
+        short_url: 'http://goo.gl/…'
+  confirm: 'Are you sure?'
+  show_action: 'Show'
+  edit_action: 'Edit'
+  destroy_action: 'Destroy'
+  back_action: 'Back'
+  nav:
+    new_bookmark: 'New Bookmark'
+  page:
+    new_bookmark: 'New Bookmark'
+    bookmarks: 'Bookmarks'
+

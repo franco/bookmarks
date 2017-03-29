@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-12">
+    <h1>Editing Bookmark</h1>
+  </div>
+</div>
+
+<%= render 'form', bookmark: @bookmark %>
+
+<div class="row">
+  <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+    <%= link_to t('show_action'), @bookmark %> |
+    <%= link_to t('back_action'), bookmarks_path %>
+  </div>
+</div>
