@@ -15,5 +15,5 @@ class Site < ApplicationRecord
   private_constant :UrlSerializer
 
   serialize :url, UrlSerializer.new 
-  validates :url, presence: true, uniqueness: true
+  validates :url, presence: true, uniqueness: true, http_url: true
 end
