@@ -24,4 +24,17 @@ RSpec.describe Bookmark, type: :model do
     end
 
   end
+  describe '.search' do
+    it 'looks up a term in name, url, and short_url' do
+      Bookmark.create!(
+        name: 'Cool site', 
+        url: 'https://www.wikipedia.com/articlex',
+        short_url: 'https://goo.gl/xyz',
+        site: Site.new(url: 'https://www.wikipedia.com')
+      )
+      expect(Bookmark.search('site').count).to eq(1)
+      expect(Bookmark.search('article').count).to eq(1)
+      expect(Bookmark.search('goo').count).to eq(1)
+    end
+  end
 end

@@ -6,6 +6,13 @@ class Bookmark < ApplicationRecord
   validates :short_url, http_url: true
   validate :site_has_matching_base_url
 
+  def self.search term
+    where "lower(name) LIKE lower(:term) OR \
+           lower(url) LIKE lower(:term) OR \
+           lower(short_url) LIKE lower(:term)",
+           term: "%#{term}%"
+  end
+
   private
     def site_has_matching_base_url
       if url_changed? && BaseUrl.new(url).trim != site.try(:url)
