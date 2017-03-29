@@ -8,40 +8,48 @@
 
 <%= render partial: 'search_form' %>
 
-<section class="bookmarks">
+<% if @bookmarks.present? %>
+  <section class="bookmarks">
 
-  <% @bookmarks.each do |bookmark| %>
-    <div class="row">
-      <article class="col-12 col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
-        <div class="row">
-          <div class="bookmark1 col-sm-10">
-            <%= link_to bookmark.url do %>
-              <h2><%= bookmark.name %></h2>
-              <div><small><%= bookmark.url %></small></div>
-            <% end %>
-
-            <small>
-              Website: <%= link_to bookmark.site.url, bookmark.site.url %>
-              <% if bookmark.short_url.present? %> 
-                |
-                Short URL: <%= link_to bookmark.short_url, bookmark.short_url %>
+    <% @bookmarks.each do |bookmark| %>
+      <div class="row">
+        <article class="col-12 col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+          <div class="row">
+            <div class="bookmark1 col-sm-10">
+              <%= link_to bookmark.url do %>
+                <h2><%= bookmark.name %></h2>
+                <div><small><%= bookmark.url %></small></div>
               <% end %>
-            </small>
-            <div>
-              <%= render partial: 'tags', locals: { tags: bookmark.tags } %>
-            </div>
 
+              <small>
+                Website: <%= link_to bookmark.site.url, bookmark.site.url %>
+                <% if bookmark.short_url.present? %> 
+                  |
+                  Short URL: <%= link_to bookmark.short_url, bookmark.short_url %>
+                <% end %>
+              </small>
+              <div>
+                <%= render partial: 'tags', locals: { tags: bookmark.tags } %>
+              </div>
+
+            </div>
+            <nav class="col-sm-2">
+              <p><%= link_to t('show_action'), bookmark %></p>
+              <p><%= link_to t('edit_action'), edit_bookmark_path(bookmark) %></p>
+              <p><%= link_to t('destroy_action'), bookmark, method: :delete, data: { confirm: t('confirm') } %></p>
+            </nav>
           </div>
-          <nav class="col-sm-2">
-            <p><%= link_to t('show_action'), bookmark %></p>
-            <p><%= link_to t('edit_action'), edit_bookmark_path(bookmark) %></p>
-            <p><%= link_to t('destroy_action'), bookmark, method: :delete, data: { confirm: t('confirm') } %></p>
-          </nav>
-        </div>
-      </article>
+        </article>
+      </div>
+    <% end %>
+  </section>
+<% else %>
+  <div class="row">
+    <div class="col-12 col-sm-10 offset-sm-1">
+      <h2 class="text-center"><%= params.has_key?(:q) ? t('not_found', term: params[:q]) : t('no_bookmarks') %></h2>
     </div>
-  <% end %>
-</section>
+  </div>
+<% end %>
 
 
 <div class="row">

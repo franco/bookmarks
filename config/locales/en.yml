@@ -41,4 +41,6 @@ en:
   page:
     new_bookmark: 'New Bookmark'
     bookmarks: 'Bookmarks'
+  not_found: 'No bookmarks found with "%{term}" '
+  no_bookmarks: 'There a no bookmarks yet!'
 
