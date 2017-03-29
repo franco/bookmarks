@@ -1,5 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Bookmark, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'site validation' do
+    it 'is invalid without a site' do
+      b = Bookmark.new(name: 'Wikipedia', url: 'https://www.wikipedia.com/articlex')
+      expect(b).to be_invalid
+    end
+    it 'is invalid with a non-matching base url' do
+      b = Bookmark.new(
+        name: 'Wikipedia', 
+        url: 'https://www.wikipedia.com/articlex',
+        site: Site.new(url: 'https://test.com')
+      )
+      expect(b).to be_invalid
+    end
+    it 'is valid with a matching base url' do
+      b = Bookmark.new(
+        name: 'Wikipedia', 
+        url: 'https://www.wikipedia.com/articlex',
+        site: Site.new(url: 'https://www.wikipedia.com')
+      )
+      expect(b).to be_valid
+    end
+
+  end
 end

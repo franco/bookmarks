@@ -14,6 +14,22 @@ class Site < ApplicationRecord
   end
   private_constant :UrlSerializer
 
+  has_many :bookmarks, dependent: :destroy
+
   serialize :url, UrlSerializer.new 
   validates :url, presence: true, uniqueness: true, http_url: true
+
+  def has_bookmarks?
+    bookmarks_count > 0
+  end
+
+  def single_bookmark?
+    bookmarks_count == 1
+  end
+
+  # Deletes the Site if there are no more bookmarks associated
+  def destroy_if_orphaned
+    destroy unless has_bookmarks?
+  end
+
 end
