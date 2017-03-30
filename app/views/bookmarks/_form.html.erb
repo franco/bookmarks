@@ -3,8 +3,7 @@
     <%= form_for(bookmark) do |f| %>
       <% if bookmark.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
-
+          <h2 class="alert alert-danger" role="alert"><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
           <ul>
           <% bookmark.errors.full_messages.each do |message| %>
             <li><%= message %></li>
