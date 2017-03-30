@@ -31,6 +31,7 @@ en:
         name: 'Bookmark name'
         url: 'http://www.example.com/…'
         short_url: 'http://goo.gl/…'
+        tags: 'tag1, tag2, …'
   confirm: 'Are you sure?'
   show_action: 'Show'
   edit_action: 'Edit'
